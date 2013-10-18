@@ -65,7 +65,9 @@ class hashTable {
   std::vector<hashItem> data; // The actual entries are here.
 
   // The hash function.
-  int hash(const std::string &key);
+  unsigned int hash(const std::string &key);
+
+  unsigned int hash2(const std::string &key);
 
   // Search for an item with the specified key.
   // Return the position if found, -1 otherwise.
