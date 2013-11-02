@@ -72,10 +72,11 @@ int heap::remove(const std::string &id, int *pKey, void *ppData) {
 		if (posCur == 0) {
 			deleteMin();
 		} else {
+			this->mapping->remove(this->data[posCur].id);
 			this->data[posCur] = this->data[filled];
 			this->filled--;
-			this->mapping->remove(this->data[posCur].id);
 			percolateDown(posCur);
+			percolateUp(posCur);
 		}
 	} else {
 		return 1;
