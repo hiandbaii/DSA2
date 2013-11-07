@@ -38,3 +38,6 @@ local.properties
 Debug
 # PDT-specific
 .buildpath
+
+#Ignoring some test files
+Assignment_3/test_files/
