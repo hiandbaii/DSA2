@@ -54,10 +54,10 @@ void graph::dijkstra(std::string srcNode) {
 	heap unvisitedNodes(this->nodeList.size());
 	graphNode *v;
 	int altDist;
-	for (std::list<graphNode *>::iterator it = this->nodeList.begin();
+/*	for (std::list<graphNode *>::iterator it = this->nodeList.begin();
 			it != nodeList.end(); it++) {
 		std::cout << (*it)->graphNode_id << ", ";
-	}
+	}*/
 	std::cout << std::endl;
 	for (std::list<graphNode *>::iterator it = this->nodeList.begin();
 			it != nodeList.end(); it++) {
