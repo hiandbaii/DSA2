@@ -95,6 +95,9 @@ void graph::dijkstra(std::string srcNode) {
 void graph::read(std::ofstream &outputFile) {
 	for (std::list<graphNode *>::iterator it = this->nodeList.begin();
 			it != this->nodeList.end(); it++) {
+		if ((*it)->graphNode_id == ""){
+			return;
+		}
 		outputFile << (*it)->graphNode_id << ": ";
 		if ((*it)->distance == std::numeric_limits<int>::max()) {
 			outputFile << "NO PATH" << std::endl;
