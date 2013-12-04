@@ -13,13 +13,13 @@
 using namespace std;
 
 
-int pathMat[100][100];//Assume 99 char words as longest
+char pathMat[1100][1100];//Assume 1099 char words as longest
 string outString;
 
 bool fill(string A,string B,string Merge){
 	
-	for (int i = 0; i<100; i++){
-		for (int j = 0; j<100;j++){
+	for (int i = 0; i<1100; i++){
+		for (int j = 0; j<1100;j++){
 				pathMat[i][j] = 0;
 		}
 	}
@@ -54,37 +54,61 @@ bool fill(string A,string B,string Merge){
 				pathMat[i][j] = 1;
 			}else if( (j == 0) && (pathMat[i-1][j] == 1) &&(A[j]==Merge[i+j] || B[i]==Merge[i+j]) ){
 				pathMat[i][j] = 1;
-			}else if ((pathMat[i-1][j] == 1 || pathMat[i][j-1] == 1) && (A[j]==Merge[i+j] || B[i]==Merge[i+j])){
-				pathMat[i][j] = 1;
+			}else if ((pathMat[i-1][j] == 1 || pathMat[i][j-1] == 1) 
+				&& (A[j]==Merge[i+j] || B[i]==Merge[i+j])){
+				if (j < sizeA){
+					if (pathMat[i-1][j+1] == 0){
+						pathMat[i][j] = 1;
+					}
+				}
+				
 			}
 			
 		}
 	}
-	// cout << endl;
-	// for (int i = 0; i <= sizeB; i++){
-	// 	for (int j = 0; j <= sizeA; j++){ 
-	// 		cout << pathMat[i][j] << ",";
-	// 	}
-	// 	cout << endl;
-	// }
+	cout << endl;
+	cout << Merge << endl;
+	for (int i = 0; i <= sizeB; i++){
+		for (int j = 0; j <= sizeA; j++){ 
+			cout << pathMat[i][j]+0 << ",";
+		}
+		cout << endl;
+	}
 
 	int i = sizeB;
 	int j = sizeA;
 	
 	while (i > 0 || j > 0){
-		if (pathMat[i-1][j] == 1){
-			decision.push(tolower(B[i-1]));
-			i = i-1;
-		}else if (pathMat[i][j-1] == 1){
+		if (i > 0 && j >0){
+			if (pathMat[i-1][j] == 1){
+				decision.push(tolower(B[i-1]));
+				i = i-1;			
+			}else if (pathMat[i][j-1] == 1){
+				decision.push(toupper(A[j-1]));
+				j = j-1;
+			}else{
+				return false;
+			}
+			// if (pathMat[i][j-1] == 1){
+			// 	decision.push(toupper(A[j-1]));
+			// 	j = j-1;
+			// }else if (pathMat[i-1][j] == 1){
+			// 	decision.push(tolower(B[i-1]));
+			// 	i = i-1;			
+			// }else{
+			// 	return false;
+			// }						
+		}else if (i == 0){
+			if (pathMat[i][j-1] == 1);
 			decision.push(toupper(A[j-1]));
 			j = j-1;
-		}else{
-			return false;
+		}else if (j == 0){
+			if (pathMat[i-1][j] == 1){
+				decision.push(tolower(B[i-1]));
+				i = i-1;
+			}
 		}
 
-		if (j < 0 || i < 0){
-			return false;
-		}
 	}
 
 	while (!decision.empty()){
