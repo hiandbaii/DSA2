@@ -50,30 +50,67 @@ bool fill(string A,string B,string Merge){
 				continue;
 			}
 
-			if ( (i == 0) && (pathMat[i][j-1] == 1) && (A[j]==Merge[i+j] || B[i]==Merge[i+j]) ){
-				pathMat[i][j] = 1;
-			}else if( (j == 0) && (pathMat[i-1][j] == 1) &&(A[j]==Merge[i+j] || B[i]==Merge[i+j]) ){
-				pathMat[i][j] = 1;
-			}else if ((pathMat[i-1][j] == 1 || pathMat[i][j-1] == 1) 
-				&& (A[j]==Merge[i+j] || B[i]==Merge[i+j])){
-				if (j < sizeA){
-					if (pathMat[i-1][j+1] == 0){
-						pathMat[i][j] = 1;
-					}
+			if (i == 0){
+				if ( (pathMat[i][j-1] == 1) && (A[j-1]==Merge[i+j-1]) ){
+					pathMat[i][j] = 1;
 				}
-				
+			}else if(j == 0){
+				if ( (pathMat[i-1][j] == 1) &&(B[i-1]==Merge[i+j-1]) ){
+					pathMat[i][j] = 1;
+				}
+			}else if( (pathMat[i-1][j] == 1) && (B[i-1]==Merge[i+j-1]) ){
+				pathMat[i][j] = 1;
+			}else if( (pathMat[i][j-1] == 1) && (A[j-1]==Merge[i+j-1]) ){
+				pathMat[i][j] = 1;
 			}
+
+			// if ( (i == 0) && (pathMat[i][j-1] == 1) && (A[j]==Merge[i+j] || B[i]==Merge[i+j]) ){
+			// 	pathMat[i][j] = 1;
+			// }else if( (j == 0) && (pathMat[i-1][j] == 1) &&(A[j]==Merge[i+j] || B[i]==Merge[i+j]) ){
+			// 	pathMat[i][j] = 1;
+			// }else if (pathMat[i][j-1]==1 && A[j]==Merge[i+j]){
+			// 	pathMat[i][j]=1;
+			// }else if (pathMat[i-1][j]==1 && B[i]==Merge[i+j]){
+			// 	pathMat[i][j]=1;
+			// }
+			
+			// else if ((pathMat[i-1][j] == 1 || pathMat[i][j-1] == 1) && (A[j]==Merge[i+j] || B[i]==Merge[i+j])){
+				// pathMat[i][j] = 1;
+			// }
 			
 		}
 	}
-	cout << endl;
-	cout << Merge << endl;
-	for (int i = 0; i <= sizeB; i++){
-		for (int j = 0; j <= sizeA; j++){ 
-			cout << pathMat[i][j]+0 << ",";
-		}
-		cout << endl;
-	}
+	
+	// for (int i = 1; i <sizeB-1;i++){
+		// for (int j =0; j<sizeA-1; j++){
+			// if (pathMat[i][j] ==1){
+				// if (pathMat[i][j+1] == 0 && pathMat[i+1][j] == 0){
+					// pathMat[i][j] = 0;
+				// }
+			// }
+			
+		// }
+	// }
+	
+	// for (int i = 1; i < sizeB-1; i++){
+		// for (int j = 0; j < sizeA-1; j++){
+			// if (pathMat[i][j] == 1){
+				
+			// }
+		// }
+	// }
+
+	
+	// cout << endl;
+	// cout<< A << endl;
+	// cout<< B << endl;
+	// cout << Merge << endl;
+	// for (int i = 0; i <= sizeB; i++){
+	// 	for (int j = 0; j <= sizeA; j++){ 
+	// 		cout << pathMat[i][j]+0 << ",";
+	// 	}
+	// 	cout << endl;
+	// }
 
 	int i = sizeB;
 	int j = sizeA;
